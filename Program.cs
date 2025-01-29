@@ -1,4 +1,6 @@
 // Welcome User
+using TicTacToe;
+
 Console.WriteLine("Welcome to Tic-Tac-Toe!");
 
 // Create game board
@@ -7,6 +9,9 @@ char[,] gameBoard = new char[3, 3];
 // Initialize game board with empty spaces
 InitializeGameBoard(gameBoard);
 
+// Create a support object
+Support gameSupport = new Support();
+
 // Main game loop
 bool gameWon = false;
 int turn = 0;
@@ -14,12 +19,16 @@ char currentPlayer = 'X';
 
 while (!gameWon && turn < 9)
 {
-    PrintGameBoard(gameBoard);
+    Support.printBoard(gameBoard); // Call the method from support class
     Console.WriteLine($"Player {currentPlayer}, enter your move (row and column): ");
-    int row = int.Parse(Console.ReadLine());
-    int col = int.Parse(Console.ReadLine());
-
-    if (gameBoard[row, col] == ' ')
+    
+    int row, col = 0;
+    bool isValidInput = int.TryParse(Console.ReadLine(), out row) &&
+                        int.TryParse(Console.ReadLine(), out col) &&
+                        row >= 0 && row < 3 &&
+                        col >= 0 && col < 3;
+    
+    if (isValidInput && gameBoard[row, col] == ' ')
     {
         gameBoard[row, col] = currentPlayer;
         turn++;
@@ -27,7 +36,7 @@ while (!gameWon && turn < 9)
 
         if (gameWon)
         {
-            PrintGameBoard(gameBoard);
+            Support.printBoard(gameBoard); // Print final board state
             Console.WriteLine($"Player {currentPlayer} wins!");
         }
         else
@@ -43,11 +52,12 @@ while (!gameWon && turn < 9)
 
 if (!gameWon)
 {
-    PrintGameBoard(gameBoard);
+    Support.printBoard(gameBoard); // Final board state if draw
     Console.WriteLine("It's a tie!");
 }
 
-        static void InitializeGameBoard(char[,] board)
+// Function to initialize game board with empty spaces
+static void InitializeGameBoard(char[,] board)
 {
     for (int row = 0; row < 3; row++)
     {
@@ -58,20 +68,7 @@ if (!gameWon)
     }
 }
 
-static void PrintGameBoard(char[,] board)
-{
-    for (int row = 0; row < 3; row++)
-    {
-        for (int col = 0; col < 3; col++)
-        {
-            Console.Write(board[row, col]);
-            if (col < 2) Console.Write("|");
-        }
-        Console.WriteLine();
-        if (row < 2) Console.WriteLine("-----");
-    }
-}
-
+// Function to check for a winner
 static bool CheckForWinner(char[,] board)
 {
     // Check rows, columns, and diagonals for a winner
@@ -90,6 +87,7 @@ static bool CheckForWinner(char[,] board)
 
     return false;
 }
+
 
 
 
