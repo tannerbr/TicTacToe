@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 namespace TicTacToe
 {
-    internal class support
+    internal class Support
     {
 
         public static void printBoard(char[,] moves)
@@ -24,7 +24,7 @@ namespace TicTacToe
             }
         }
         
-        public (string, int) GameWinner(char[,] board)
+        public (string, int) CheckForWinner(char[,] board)
         {
             string response = "";
             int endGame = 0;
