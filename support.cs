@@ -9,7 +9,7 @@ namespace TicTacToe
     internal class Support
     {
 
-        public static void printBoard(char[,] moves)
+        public void printBoard(char[,] moves)
         {
             Console.WriteLine("Tic-Tac-Toe Board: ");
 

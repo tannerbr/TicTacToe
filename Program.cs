@@ -19,7 +19,7 @@ char currentPlayer = 'X';
 
 while (!gameWon && turn < 9)
 {
-    Support.printBoard(gameBoard); // Call the method from support class
+    gameSupport.printBoard(gameBoard); // Call the method from support class
     Console.WriteLine($"Player {currentPlayer}, enter your move (row and column): ");
     
     int row, col = 0;
@@ -36,7 +36,7 @@ while (!gameWon && turn < 9)
 
         if (gameWon)
         {
-            Support.printBoard(gameBoard); // Print final board state
+            gameSupport.printBoard(gameBoard); // Print final board state
             Console.WriteLine($"Player {currentPlayer} wins!");
         }
         else
@@ -52,7 +52,7 @@ while (!gameWon && turn < 9)
 
 if (!gameWon)
 {
-    Support.printBoard(gameBoard); // Final board state if draw
+    gameSupport.printBoard(gameBoard); // Final board state if draw
     Console.WriteLine("It's a tie!");
 }
 
