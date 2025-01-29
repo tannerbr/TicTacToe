@@ -24,7 +24,7 @@ namespace TicTacToe
             }
         }
         
-        public (string, int) GameWinner(char[,] board)
+        public (string, int) CheckForWinner(char[,] board)
         {
             string response = "";
             int endGame = 0;
