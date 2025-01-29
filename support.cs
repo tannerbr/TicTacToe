@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TicTacToe
 {
-    internal class support
+    internal class Support
     {
 
         public static void printBoard(char[,] moves)
