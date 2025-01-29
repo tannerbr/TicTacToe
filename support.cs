@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -24,16 +24,16 @@ namespace TicTacToe
             }
         }
         
-        public (string, int) CheckForWinner(char[,] board)
+        public (string, bool) CheckForWinner(char[,] board)
         {
             string response = "";
-            int endGame = 0;
+            bool endGame = false;
             for (int row = 0; row < 3; row++)
             {
                 if (board[row, 0] == board[row, 1] && board[row, 1] == board[row, 2] && board[row, 0] != ' ')
                 {
                     response = $"Player {board[row, 0]} has won!"; // Winner is either 'X' or 'O'
-                    endGame++;
+                    endGame = true;
                 }
             } 
             // Check columns
@@ -42,23 +42,23 @@ namespace TicTacToe
                 if (board[0, col] == board[1, col] && board[1, col] == board[2, col] && board[0, col] != ' ')
                 {
                     response = $"Player {board[0, col]} has won!"; // Winner is either 'X' or 'O'
-                    endGame++;
+                    endGame = true;
                 }
             }
             // Check diagonals
             if (board[0, 0] == board[1, 1] && board[1, 1] == board[2, 2] && board[0, 0] != ' ')
             {
                 response = $"Player {board[0, 0]} has won!"; // Winner is either 'X' or 'O'
-                endGame++;
+                endGame = true;
             }
 
             if (board[0, 2] == board[1, 1] && board[1, 1] == board[2, 0] && board[0, 2] != ' ')
             {
                 response = $"Player {board[0, 2]} has won!"; // Winner is either 'X' or 'O'
-                endGame++;
+                endGame = true;
             }
             // Check for a tie (if there is no winner and the board is full)
-            if (endGame == 0)
+            if (endGame == false)
             {
                 bool boardFull = true;
 
@@ -79,7 +79,7 @@ namespace TicTacToe
                 if (boardFull)
                 {
                     response = "It's a tie!";
-                    endGame++;
+                    endGame = true;
                 }
             }
             // No winner yet
